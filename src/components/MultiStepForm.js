@@ -47,7 +47,8 @@ export const MultiStepForm = () =>{
         if(page === 0){
 
             if(document.getElementById('start-audio').className === 'start'){
-                if(document.getElementById('image-song').className === 'Alive'){
+                if(document.getElementById('image-song').className === 'alive'){
+
                     // Inicia a música no site
                     <script src="/path/to/howler.js"></script>
                     var audio = new Howl({
@@ -56,8 +57,11 @@ export const MultiStepForm = () =>{
                         volume: 0.5,
                     })
                     var play = audio.play();
-                    audio.fade(0.5, 0, 200000, play)    
+                    audio.fade(0.5, 0, 200000, play)
+    
+                    document.getElementById('start-audio').className = 'stop'   
                 } else{
+                    // Inicia a música no site
                     <script src="/path/to/howler.js"></script>
                     var audio = new Howl({
                         src: [myTime],
@@ -65,7 +69,9 @@ export const MultiStepForm = () =>{
                         volume: 0.5,
                     })
                     var play = audio.play();
-                    audio.fade(0.5, 0, 200000, play)  
+                    audio.fade(0.5, 0, 200000, play)
+    
+                    document.getElementById('start-audio').className = 'stop'
                 }
                 
             }else{
@@ -118,7 +124,7 @@ export const MultiStepForm = () =>{
                 setPage ((currPage) => currPage + 1)
                 document.getElementById('btn-init').value = true;
             }
-        }
+        } else{}
     }
 
     function alert(){
@@ -131,7 +137,6 @@ export const MultiStepForm = () =>{
             return 'Iniciar Cadastro';
         }
         else if(page === 5){
-            document.getElementById('btn-init').onclick = 'alert';
             return 'Finalizar';
         } else{
             return 'Próximo';
@@ -228,7 +233,7 @@ export const MultiStepForm = () =>{
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
-                            <button id='btn-init' disabled={page ===5} onClick={(nextPage)}>
+                            <button id='btn-init'  onClick={(nextPage)}>
                                 {ButtonText1()}
                             </button>
                             <span id='div-alert-not-continue'>
