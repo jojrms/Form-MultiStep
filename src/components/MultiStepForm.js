@@ -155,6 +155,8 @@ export const MultiStepForm = () =>{
     };
     function initAudio(){
         document.getElementById('start-audio').src = "https://img.icons8.com/ios-glyphs/90/000000/pause--v1.png";
+        document.getElementById('div-status').style.animationName = 'simulation-music';
+        document.getElementById('div-status').style.animationDuration = '200s';
         if(document.getElementById('start-audio').className === 'start'){
             if(document.getElementById('image-song').className === 'alive'){
 
@@ -209,7 +211,7 @@ export const MultiStepForm = () =>{
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
-                            <button id='btn-init' disabled={page ===5} onClick={nextPage}>
+                            <button id='btn-init' disabled={page ===5} onClick={() => setPage ((currPage) => currPage + 1)}>
                                 {ButtonText1()}
                             </button>
                             <span id='div-alert-not-continue'>
