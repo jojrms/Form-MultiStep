@@ -43,21 +43,31 @@ export const MultiStepForm = () =>{
         
     }
 
-    
-
     function nextPage(){
         if(page === 0){
 
             if(document.getElementById('start-audio').className === 'start'){
-                // Inicia a música no site
-                <script src="/path/to/howler.js"></script>
-                var audio = new Howl({
-                    src: [Alive],
-                    html5: true,
-                    volume: 0.5,
-                })
-                var play = audio.play();
-                audio.fade(0.5, 0, 200000, play)
+                if(document.getElementById('image-song').className === 'Alive'){
+                    // Inicia a música no site
+                    <script src="/path/to/howler.js"></script>
+                    var audio = new Howl({
+                        src: [Alive],
+                        html5: true,
+                        volume: 0.5,
+                    })
+                    var play = audio.play();
+                    audio.fade(0.5, 0, 200000, play)    
+                } else{
+                    <script src="/path/to/howler.js"></script>
+                    var audio = new Howl({
+                        src: [myTime],
+                        html5: true,
+                        volume: 0.5,
+                    })
+                    var play = audio.play();
+                    audio.fade(0.5, 0, 200000, play)  
+                }
+                
             }else{
                 console.log(false);
             }
@@ -111,12 +121,19 @@ export const MultiStepForm = () =>{
         }
     }
 
+    function alert(){
+        alert('Formulário Enviado')
+    }
+
     //Modifica o texto do botão com base no valor do useState
     const ButtonText1 = () =>{
         if(page === 0){
             return 'Iniciar Cadastro';
         }
-        else{
+        else if(page === 5){
+            document.getElementById('btn-init').onclick = 'alert';
+            return 'Finalizar';
+        } else{
             return 'Próximo';
         }
     }
@@ -211,7 +228,7 @@ export const MultiStepForm = () =>{
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
-                            <button id='btn-init' disabled={page ===5} onClick={() => setPage ((currPage) => currPage + 1)}>
+                            <button id='btn-init' disabled={page ===5} onClick={(nextPage)}>
                                 {ButtonText1()}
                             </button>
                             <span id='div-alert-not-continue'>
