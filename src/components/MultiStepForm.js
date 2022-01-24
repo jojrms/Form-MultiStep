@@ -207,7 +207,7 @@ export const MultiStepForm = () =>{
                 var play = audio.play();
                 audio.fade(0.5, 0, 200000, play)
 
-                document.getElementById('start-audio').className = 'stop'
+                document.getElementById('start-audio').className = 'stop'   
             }
         }else{
             audio.volume = 0;
