@@ -128,6 +128,18 @@ export const MultiStepForm = () =>{
                 setPage ((currPage) => currPage + 1)
                 document.getElementById('btn-init').value = true;
             }
+        } else{
+            if(formData.nome.length <= 1 || formData.sobrenome.length <= 1 || formData.cidade.length <= 1 || formData.cep.length <= 1 || 
+                formData.numero.length <= 1 || formData.logradouro.length <= 1 || 
+                formData.bairro.length <= 1 || formData.preferenciaMusical.length <= 1 || formData.sistemaOperacional.length <= 1 ){
+                    document.getElementById('btn-init').style.display = 'none';
+                    document.getElementById('btn-login').style.display = 'none';
+                    document.getElementById('div-alert-not-continue').style.display = 'grid'; 
+            } else{
+                document.forms['form-multiple-etp'].submit();
+                alert('Formulário enviado com sucesso')    
+            }
+            
         }
     }
 
@@ -234,7 +246,7 @@ export const MultiStepForm = () =>{
                         {formTitles[page]}
                     </h1>
                     <section className='sc'>
-                        <form className='form-multiple-etp' method='get' action='.'>
+                        <form className='form-multiple-etp' id='form-multiple-etp' method='get' action='.'>
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
