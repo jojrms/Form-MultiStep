@@ -10,7 +10,6 @@ function Etp2({formData, setFormData}){
         document.getElementById('div-alert-not-continue').style.display = 'none';
     }
 
-
     return (
         <div className='etp2'>
                 <section className='form1'>
