@@ -19,7 +19,7 @@ export const MultiStepForm = () =>{
     const formTitles = ['Olá, que prazer ter você aqui!', 
     'Para começar, como você se chama?', 
     'E de onde você está?',
-    'Qual seu gosto musical principal?',
+    'Quais são seus gostos musicais?',
     'E por último, qual seu sistema operacional?',
     'Seus dados estão corretos?'
     ]
@@ -45,45 +45,46 @@ export const MultiStepForm = () =>{
 
     function nextPage(){
         if(page === 0){
-            if(document.getElementById('btn-init').className === 'first'){
-                if(document.getElementById('start-audio').className === 'start'){
-                    if(document.getElementById('image-song').className === 'Alive'){
-                        // Inicia a música no site
-                        <script src="/path/to/howler.js"></script>
-                        var audio = new Howl({
-                            src: [Alive],
-                            html5: true,
-                            volume: 0.5,
-                        })
-                        var play = audio.play();
-                        audio.fade(0.5, 0, 200000, play)    
-                    } else{
-                        <script src="/path/to/howler.js"></script>
-                        var audio = new Howl({
-                            src: [myTime],
-                            html5: true,
-                            volume: 0.5,
-                        })
-                        var play = audio.play();
-                        audio.fade(0.5, 0, 200000, play)  
-                    }
-                    
-                }else{
-                    console.log(false);
-                }
-    
-                document.getElementById('start-audio').src = "https://img.icons8.com/ios-glyphs/90/000000/pause--v1.png";
-                document.getElementById('start-audio').id = 'stop-audio';
-    
-                document.getElementById('div-status').style.animationName = 'simulation-music';
-                document.getElementById('div-status').style.animationDuration = '200s';
-    
-                setPage ((currPage) => currPage + 1)
 
-                document.getElementById('btn-init').className = 'second';
-            } else{
-                setPage ((currPage) => currPage + 1)
+            if(document.getElementById('start-audio').className === 'start'){
+                if(document.getElementById('image-song').className === 'alive'){
+
+                    // Inicia a música no site
+                    <script src="/path/to/howler.js"></script>
+                    var audio = new Howl({
+                        src: [Alive],
+                        html5: true,
+                        volume: 0.5,
+                    })
+                    var play = audio.play();
+                    audio.fade(0.5, 0, 200000, play)
+    
+                    document.getElementById('start-audio').className = 'stop'   
+                } else{
+                    // Inicia a música no site
+                    <script src="/path/to/howler.js"></script>
+                    var audio = new Howl({
+                        src: [myTime],
+                        html5: true,
+                        volume: 0.5,
+                    })
+                    var play = audio.play();
+                    audio.fade(0.5, 0, 200000, play)
+    
+                    document.getElementById('start-audio').className = 'stop'
+                }
+                
+            }else{
+                console.log(false);
             }
+
+            document.getElementById('start-audio').src = "https://img.icons8.com/ios-glyphs/90/000000/pause--v1.png";
+            document.getElementById('start-audio').id = 'stop-audio';
+
+            document.getElementById('div-status').style.animationName = 'simulation-music';
+            document.getElementById('div-status').style.animationDuration = '200s';
+
+            setPage ((currPage) => currPage + 1)
         }else if(page === 1){
             if(formData.nome.length <= 1 || formData.sobrenome.length <= 1){
                 document.getElementById('btn-init').style.display = 'none';
@@ -165,11 +166,13 @@ export const MultiStepForm = () =>{
     })
 
     function nextAudio(){
-        document.getElementById('image-song').src = 'https://images.genius.com/156b4a91c9bc060b82eb60ae00612abd.486x486x1.png';
-        document.getElementById('name-song').innerHTML = 'My Time';
-        document.getElementById('name-song').style.marginTop = '57%';
-        document.getElementById('artist-song').innerHTML = 'The Caliber';
-        document.getElementById('image-song').className = 'myTime'
+        if(document.getElementById('start-audio').className === 'start'){
+            document.getElementById('image-song').src = 'https://images.genius.com/156b4a91c9bc060b82eb60ae00612abd.486x486x1.png';
+            document.getElementById('name-song').innerHTML = 'My Time';
+            document.getElementById('name-song').style.marginTop = '57%';
+            document.getElementById('artist-song').innerHTML = 'The Caliber';
+            document.getElementById('image-song').className = 'myTime';
+        } else{}
     };
     function initAudio(){
         document.getElementById('start-audio').src = "https://img.icons8.com/ios-glyphs/90/000000/pause--v1.png";
@@ -207,11 +210,13 @@ export const MultiStepForm = () =>{
         } 
     }
     function backAudio(){
-        document.getElementById('image-song').src = 'https://th.bing.com/th/id/OIF.JDCZJxXWl9ZbfMbAw85ZNQ?pid=ImgDet&rs=1';
-        document.getElementById('name-song').innerHTML = 'Alive';
-        document.getElementById('name-song').style.marginTop = '32%';
-        document.getElementById('artist-song').innerHTML = 'Zerb, Mevil, Calvin Duo';
-        document.getElementById('image-song').className = 'Alive'
+        if(document.getElementById('start-audio').className === 'start'){
+            document.getElementById('image-song').src = 'https://th.bing.com/th/id/OIF.JDCZJxXWl9ZbfMbAw85ZNQ?pid=ImgDet&rs=1';
+            document.getElementById('name-song').innerHTML = 'Alive';
+            document.getElementById('name-song').style.marginTop = '32%';
+            document.getElementById('artist-song').innerHTML = 'Zerb, Mevil, Calvin Duo';
+            document.getElementById('image-song').className = 'Alive'
+        } else{}
     };
 
     console.log(formData);
@@ -229,7 +234,7 @@ export const MultiStepForm = () =>{
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
-                            <button id='btn-init' className='first' onClick={(nextPage)}>
+                            <button id='btn-init' onClick={(nextPage)}>
                                 {ButtonText1()}
                             </button>
                             <span id='div-alert-not-continue'>
