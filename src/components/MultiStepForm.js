@@ -45,37 +45,43 @@ export const MultiStepForm = () =>{
 
     function nextPage(){
         if(page === 0){
+            if(document.getElementById('btn-init').className === 'first'){
+                if(document.getElementById('start-audio').className === 'start'){
+                    if(document.getElementById('image-song').className === 'alive'){
 
-            if(document.getElementById('start-audio').className === 'start'){
-                if(document.getElementById('image-song').className === 'alive'){
-
-                    // Inicia a música no site
-                    <script src="/path/to/howler.js"></script>
-                    var audio = new Howl({
-                        src: [Alive],
-                        html5: true,
-                        volume: 0.5,
-                    })
-                    var play = audio.play();
-                    audio.fade(0.5, 0, 200000, play)
-    
-                    document.getElementById('start-audio').className = 'stop'   
-                } else{
-                    // Inicia a música no site
-                    <script src="/path/to/howler.js"></script>
-                    var audio = new Howl({
-                        src: [myTime],
-                        html5: true,
-                        volume: 0.5,
-                    })
-                    var play = audio.play();
-                    audio.fade(0.5, 0, 200000, play)
-    
-                    document.getElementById('start-audio').className = 'stop'
+                        // Inicia a música no site
+                        <script src="/path/to/howler.js"></script>
+                        var audio = new Howl({
+                            src: [Alive],
+                            html5: true,
+                            volume: 0.5,
+                        })
+                        var play = audio.play();
+                        audio.fade(0.5, 0, 200000, play)
+        
+                        document.getElementById('start-audio').className = 'stop'   
+                    } else{
+                        // Inicia a música no site
+                        <script src="/path/to/howler.js"></script>
+                        var audio = new Howl({
+                            src: [myTime],
+                            html5: true,
+                            volume: 0.5,
+                        })
+                        var play = audio.play();
+                        audio.fade(0.5, 0, 200000, play)
+        
+                        document.getElementById('start-audio').className = 'stop'
+                    }
+                    
+                }else{
+                    console.log(false);
                 }
-                
-            }else{
-                console.log(false);
+                setPage ((currPage) => currPage + 1)
+                document.getElementById('btn-init').className = 'second'
+            } else{
+                setPage ((currPage) => currPage + 1)
+
             }
 
             document.getElementById('start-audio').src = "https://img.icons8.com/ios-glyphs/90/000000/pause--v1.png";
@@ -83,8 +89,6 @@ export const MultiStepForm = () =>{
 
             document.getElementById('div-status').style.animationName = 'simulation-music';
             document.getElementById('div-status').style.animationDuration = '200s';
-
-            setPage ((currPage) => currPage + 1)
         }else if(page === 1){
             if(formData.nome.length <= 1 || formData.sobrenome.length <= 1){
                 document.getElementById('btn-init').style.display = 'none';
@@ -234,7 +238,7 @@ export const MultiStepForm = () =>{
                         {PageDisplay()}
                         </form>
                         <section className='buttons'>
-                            <button id='btn-init' onClick={(nextPage)}>
+                            <button id='btn-init' className='first' onClick={(nextPage)}>
                                 {ButtonText1()}
                             </button>
                             <span id='div-alert-not-continue'>
