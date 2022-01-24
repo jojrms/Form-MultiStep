@@ -19,7 +19,7 @@ export const MultiStepForm = () =>{
     const formTitles = ['Olá, que prazer ter você aqui!', 
     'Para começar, como você se chama?', 
     'E de onde você está?',
-    'Quais são seus gostos musicais?',
+    'Qual seu gosto musical preferido?',
     'E por último, qual seu sistema operacional?',
     'Seus dados estão corretos?'
     ]
