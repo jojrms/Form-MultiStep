@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {MultiStepForm} from './components/MultiStepForm';
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <MultiStepForm/>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<MultiStepForm/>}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
